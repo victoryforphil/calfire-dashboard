@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, List, Card } from 'antd';
+import { Button, List, Card, Spin } from 'antd';
 
 import FireItem from "./FireItem"
 
@@ -34,6 +34,10 @@ export default class FireGrid extends React.Component {
             )
     }
     render() {
+        if(this.state.isLoaded === false || this.state.items.length < 1){
+            return (<Spin></Spin>)
+        }
+        
         return (
             <List
                 grid={{

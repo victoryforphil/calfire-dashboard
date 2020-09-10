@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-
+import Config from "../config"
 const containerStyle = {
   width: '800px',
   height: '600px'
@@ -65,7 +65,7 @@ export default class PlaneMap extends Component {
   render() {
     return (
       <LoadScript
-        googleMapsApiKey=""
+        googleMapsApiKey={Config.mapKey}
       >
         <GoogleMap
           mapContainerStyle={containerStyle}

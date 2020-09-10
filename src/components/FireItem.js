@@ -13,11 +13,12 @@ const data = ["Fire 1"]
 export default class FireGrid extends React.Component{
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             error: null,
             isLoaded: false,
-            fire: props.fire,
-            id: props.fire.UniqueId,
+            fire: this.props.fire,
+            id: this.props.fire.UniqueId,
             redirect: null
         };
     }

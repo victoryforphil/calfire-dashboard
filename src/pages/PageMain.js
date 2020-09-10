@@ -9,25 +9,22 @@ import {
 } from "react-router-dom";
 import { Button, PageHeader } from 'antd';
 import FireDetail from "../components/FireDetail"
+import FireGrid from "../components/FireGrid";
 
 
-export default function FirePage() {
+export default function PageMain() {
     // We can use the `useParams` hook here to access
     // the dynamic pieces of the URL.
-    let { id } = useParams();
-    const [back, setBack] = useState(false);
-    if(back){
-      return <Redirect push to={`/`} />
-    }
+    
+
     return (
         <div>
           <PageHeader
     className="site-page-header"
-    onBack={()=>setBack(true)}
     title="CALFire Watch"
-    subTitle={"Fire: " + id}
+    subTitle={"All Fires"}
   />
-      <FireDetail id={id}/>
+      <FireGrid/>
         </div>
     );
   }
