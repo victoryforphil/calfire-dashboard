@@ -18,10 +18,10 @@ export default class PlaneMap extends Component {
         };
     }
     loadFlights(){
-        const latMin = this.props.location.lat - 1;
-        const latMax = this.props.location.lat + 1;
-        const lngMin = this.props.location.lng - 1;
-        const lngMax = this.props.location.lng + 1;
+        const latMin = this.props.location.lat - 0.25;
+        const latMax = this.props.location.lat + 0.25;
+        const lngMin = this.props.location.lng - 0.25;
+        const lngMax = this.props.location.lng + 0.25;
         fetch(`https://opensky-network.org/api/states/all?lamin=${latMin}&lomin=${lngMin}&lamax=${latMax}&lomax=${lngMax}`)
             .then(res => res.json())
             .then(
@@ -44,7 +44,7 @@ export default class PlaneMap extends Component {
     componentDidMount() {
         setInterval(() => {
             this.loadFlights();
-        }, 1000);
+        }, 10000);
     }
     genMarkers(states){
         //5 = long
@@ -55,7 +55,7 @@ export default class PlaneMap extends Component {
         return states.map((item)=>{
             return(
                 <Marker
-                    
+                    icon={"/PlaneMarker.png"}
                     label={item[1]}
                     position={{lng: item[5], lat:item[6]}}
                 />
@@ -70,8 +70,9 @@ export default class PlaneMap extends Component {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={this.props.location}
-          zoom={9}
+          zoom={11}
         >
+          <Marker position={this.props.location} label="FIRE LOCATION"></Marker>
           {this.genMarkers(this.state.items)}
         </GoogleMap>
       </LoadScript>
