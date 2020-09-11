@@ -85,10 +85,11 @@ export default class FireDetail extends React.Component {
   render() {
     if (this.state.isLoaded && this.state.error == null) {
       return (
-        <div style={{ padding: 5 }}>
+        <div style={{ padding: 0 }}>
           <Card
             title={this.state.fire.Name + ` (${this.state.fire.County})`}
             extra={this.parseStats(this.state.fire)}
+
           >
             <Progress percent={this.state.fire.PercentContained} />
             <Row gutter={16}>
@@ -119,10 +120,10 @@ export default class FireDetail extends React.Component {
                 ></PlaneMap>
               </TabPane>
               <TabPane tab="Twitter Map" key="2">
-                <Hashtag hashtag={this.genHash()}></Hashtag>
+                
               </TabPane>
               <TabPane tab="Bulk Information" key="3">
-                <Descriptions title="Fire Info" bordered>
+                <Descriptions title="Fire Info" bordered column={{ xxl: 2, xl: 2, lg: 2, md: 1, sm: 1, xs: 1 }} layout="vertical">
                   <Descriptions.Item label="Name">
                     {this.state.fire.Name}
                   </Descriptions.Item>

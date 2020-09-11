@@ -22,7 +22,7 @@ export default function PageMain() {
           <PageHeader
     className="site-page-header"
     title="CALFire Watch"
-    subTitle={"All Fires"}
+    subTitle={"All Fires (sorted by location)"}
   />
       <FireGrid/>
         </div>

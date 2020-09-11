@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import Config from "../config"
 const containerStyle = {
-  width: '250px',
+  width: '100%',
   height: '250px'
 };
 
@@ -20,7 +20,7 @@ export default class Map extends Component {
         <GoogleMap
           mapContainerStyle={this.props.mapStyle || containerStyle}
           center={this.props.location}
-          zoom={10}
+          zoom={8}
         >
           <Marker
       position={this.props.location}

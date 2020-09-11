@@ -9,10 +9,35 @@ export default class FireGrid extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            items: []
+            items: [],
+            location: null
         };
     }
+    getLocation() {
+        if (navigator.geolocation) {
+            
+          navigator.geolocation.getCurrentPosition((pos)=>{this.sortByLocation(pos)});
+        } else {
+          
+        }
+      }
 
+    sortByLocation(pos){
+        const long = pos.coords.longitude;
+        const lat = pos.coords.latitude;
+
+        const oldItems = this.state.items;
+        this.setState({items: []})
+        const newTiems = oldItems.sort(function(a, b) {
+            //this.props.fire.Latitude, lng: this.props.fire.Longitude
+            const errorA = Math.abs(a.Latitude - lat) + Math.abs(a.Longitude - long);
+            const errorB = Math.abs(b.Latitude - lat) + Math.abs(b.Longitude - long);
+            if(errorA > errorB){return 1}
+            if(errorA < errorB){return -1}
+            if(errorA == errorB){return 0}
+          });
+        this.setState({items: newTiems, isloaded: true})
+    }
     componentDidMount() {
         fetch("https://cors-anywhere.herokuapp.com/https://www.fire.ca.gov/umbraco/api/IncidentApi/List?inactive=false&year=2020")
             .then(res => res.json())
@@ -24,6 +49,8 @@ export default class FireGrid extends React.Component {
                         isLoaded: true,
                         items: result
                     });
+
+                    this.getLocation();
                 },
                 (error) => {
                     this.setState({

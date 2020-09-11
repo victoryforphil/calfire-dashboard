@@ -24,7 +24,12 @@ export default class FireGrid extends React.Component{
     }
     parseStats(status){
         if(status.IsActive){
-            return< Progress type="circle" percent={status.PercentContained} width={50}/>
+            return(
+                <div>
+                   
+                <Progress type="circle" percent={status.PercentContained} width={50}/>
+                </div>
+            )
             //return <Badge count={status.PercentContained + "%"}/>
         }else{
 
@@ -41,8 +46,8 @@ export default class FireGrid extends React.Component{
 
           }
         return(
-            <div style={{padding: 5}}>
-                <Card title={this.props.fire.Name} extra={this.parseStats(this.props.fire)} style={{ width: 300 }}
+            <div style={{padding: 0}}>
+                <Card title={this.props.fire.Name} extra={this.parseStats(this.props.fire)} style={{ margin: 1}}
                     onClick={this.handleOnClick}>
                     <Map 
                         location={{lat: this.props.fire.Latitude, lng: this.props.fire.Longitude}}
