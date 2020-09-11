@@ -6,27 +6,26 @@ const containerStyle = {
   height: '250px'
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
 
-export default class Map extends Component {
-  render() {
-    return (
+export default function Map(props){
+  let {mapStyle, location} = props;
+  return (
       <LoadScript
        googleMapsApiKey={Config.mapKey}
       >
         <GoogleMap
-          mapContainerStyle={this.props.mapStyle || containerStyle}
-          center={this.props.location}
+          mapContainerStyle={mapStyle || containerStyle}
+          center={location}
           zoom={8}
         >
           <Marker
-      position={this.props.location}
+      position={location}
     />
         </GoogleMap>
       </LoadScript>
-    )
-  }
+    
+  
+  )
 }
+
+

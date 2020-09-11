@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Button, List, Card,Statistic, Badge,Progress, Divider} from 'antd';
 import {
     BrowserRouter as Router,
@@ -9,20 +9,15 @@ import {
   } from "react-router-dom";
 import Map from "./Map"
 import PlaneMap from './PlaneMap';
-const data = ["Fire 1"]
-export default class FireGrid extends React.Component{
-    constructor(props) {
-        super(props);
-        console.log(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            fire: this.props.fire,
-            id: this.props.fire.UniqueId,
-            redirect: null
-        };
-    }
-    parseStats(status){
+
+
+export default function FireItem(props){
+
+    //Define state
+    let {id, fire} = props;
+    let [redirect, setRedirect] = useState(null);
+
+    function parseStats(status){
         if(status.IsActive){
             return(
                 <div>
@@ -35,29 +30,26 @@ export default class FireGrid extends React.Component{
 
         }
     }
-    handleOnClick = () => {
-        // some action...
-        // then redirect
-        this.setState({redirect: this.state.id});
-      }
-    render(){
-        if (this.state.redirect != null) {
-            return <Redirect push to={`/fire/${this.state.redirect}`} />;
 
-          }
-        return(
-            <div style={{padding: 0}}>
-                <Card title={this.props.fire.Name} extra={this.parseStats(this.props.fire)} style={{ margin: 1}}
-                    onClick={this.handleOnClick}>
-                    <Map 
-                        location={{lat: this.props.fire.Latitude, lng: this.props.fire.Longitude}}
-                        
-                    ></Map>
-                    <Divider></Divider>
-                    
-                    <Statistic title="Acres Burned" value={this.props.fire.AcresBurned} />
-                </Card>
-            </div>
-        )
+    function handleOnClick(){
+        setRedirect(id);
     }
+
+    if (redirect != null) {
+        return <Redirect push to={`/fire/${redirect}`} />;
+    }
+    return(
+        <div style={{padding: 0}}>
+            <Card title={fire.Name} extra={parseStats(fire)} style={{ margin: 1}}
+                onClick={handleOnClick}>
+                <Map 
+                    location={{lat: fire.Latitude, lng: fire.Longitude}}
+                    
+                ></Map>
+                <Divider></Divider>
+                
+                <Statistic title="Acres Burned" value={fire.AcresBurned} />
+            </Card>
+        </div>
+    )
 }
