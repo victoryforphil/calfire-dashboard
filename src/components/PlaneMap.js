@@ -59,9 +59,7 @@ export default function PlaneMap(props) {
     }
   })
   return (
-    <LoadScript
-        googleMapsApiKey={Config.mapKey}
-      >
+    
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={location}
@@ -70,6 +68,6 @@ export default function PlaneMap(props) {
           <Marker position={location} label="FIRE LOCATION"></Marker>
           {genMarkers(items)}
         </GoogleMap>
-      </LoadScript>
+
   );
 }

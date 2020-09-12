@@ -9,13 +9,12 @@ const containerStyle = {
 export default function Map(props) {
   let { mapStyle, location } = props;
   return (
-    <LoadScript googleMapsApiKey={Config.mapKey}>
+    
       <GoogleMap
         mapContainerStyle={mapStyle || containerStyle}
         center={location}
         zoom={8}>
         <Marker position={location} />
       </GoogleMap>
-    </LoadScript>
   );
 }
