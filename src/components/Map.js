@@ -1,31 +1,21 @@
-import React, { Component } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
-import Config from "../config"
+import React, { Component } from "react";
+import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import Config from "../config";
 const containerStyle = {
-  width: '100%',
-  height: '250px'
+  width: "100%",
+  height: "250px",
 };
 
-
-export default function Map(props){
-  let {mapStyle, location} = props;
+export default function Map(props) {
+  let { mapStyle, location } = props;
   return (
-      <LoadScript
-       googleMapsApiKey={Config.mapKey}
-      >
-        <GoogleMap
-          mapContainerStyle={mapStyle || containerStyle}
-          center={location}
-          zoom={8}
-        >
-          <Marker
-      position={location}
-    />
-        </GoogleMap>
-      </LoadScript>
-    
-  
-  )
+    <LoadScript googleMapsApiKey={Config.mapKey}>
+      <GoogleMap
+        mapContainerStyle={mapStyle || containerStyle}
+        center={location}
+        zoom={8}>
+        <Marker position={location} />
+      </GoogleMap>
+    </LoadScript>
+  );
 }
-
-

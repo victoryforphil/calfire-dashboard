@@ -15,7 +15,6 @@ export default class FireGrid extends React.Component {
     }
     getLocation() {
         if (navigator.geolocation) {
-            
           navigator.geolocation.getCurrentPosition((pos)=>{this.sortByLocation(pos)});
         } else {
           
@@ -34,7 +33,7 @@ export default class FireGrid extends React.Component {
             const errorB = Math.abs(b.Latitude - lat) + Math.abs(b.Longitude - long);
             if(errorA > errorB){return 1}
             if(errorA < errorB){return -1}
-            if(errorA == errorB){return 0}
+            if(errorA === errorB){return 0}
           });
         this.setState({items: newTiems, isloaded: true})
     }

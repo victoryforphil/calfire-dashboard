@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, List, Card,Statistic, Badge,Progress, Divider} from 'antd';
 import {
     BrowserRouter as Router,
@@ -14,7 +14,7 @@ import PlaneMap from './PlaneMap';
 export default function FireItem(props){
 
     //Define state
-    let {id, fire} = props;
+    const { fire} = props;
     let [redirect, setRedirect] = useState(null);
 
     function parseStats(status){
@@ -32,8 +32,10 @@ export default function FireItem(props){
     }
 
     function handleOnClick(){
-        setRedirect(id);
+        
+        setRedirect(fire.UniqueId);
     }
+
 
     if (redirect != null) {
         return <Redirect push to={`/fire/${redirect}`} />;
