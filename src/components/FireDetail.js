@@ -57,6 +57,12 @@ export default class FireDetail extends React.Component {
       .then(
         (result) => {
           result.forEach((fire) => {
+            if(!fire.PercentContained){
+              fire.PercentContained = "0";
+          }
+          if(!fire.AcresBurned){
+              fire.AcresBurned = "Unknown";
+          }
             console.log(id);
             console.log(this.state);
             if (fire.UniqueId === id) {

@@ -18,7 +18,7 @@ export default function FireGrid(props) {
             .then((res) => res.json())
             .then(
                 (result) => {
-
+                    //console.log(result);
                     setLoaded(true);
                     setItems(result);
 

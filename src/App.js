@@ -13,7 +13,7 @@ import {
 import FireGrid from './components/FireGrid'
 import FireDetail from "./components/FireDetail"
 import PageFire from "./pages/PageFire"
-import Config from "./config"
+import Config from "./config.js"
 import PageMain from "./pages/PageMain"
 import * as firebase from 'firebase';
 import { LoadScript } from "@react-google-maps/api";

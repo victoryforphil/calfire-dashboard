@@ -15,10 +15,16 @@ export default function FireItem(props){
 
     //Define state
     const { fire} = props;
+    if(!fire.PercentContained){
+        fire.PercentContained = "0";
+    }
+    if(!fire.AcresBurned){
+        fire.AcresBurned = "Unknown";
+    }
     let [redirect, setRedirect] = useState(null);
 
     function parseStats(status){
-        if(status.IsActive){
+        if(status.IsActive && status.PercentContained){
             return(
                 <div>
                    
